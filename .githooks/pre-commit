@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "Running pre-commit checks..."
+
+# Prevent commits directly to the main line
+branch="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$branch" = "main" ]; then
+  echo "Direct commits to main are prohibited!"
+  exit 1
+fi
+
+# Set the project name to a template value
+sed -i -e "s/template-gradle-project-for-java/\${PROJECT_NAME}/g" settings.gradle.kts
+
+exit 0

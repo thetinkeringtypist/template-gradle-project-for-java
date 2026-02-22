@@ -73,6 +73,10 @@ subprojects {
       useJUnitPlatform()
     }
 
+    tasks.register<Exec>("installGitHooks") {
+      commandLine("git", "config", "core.hooksPath", ".githooks")
+    }
+
     dependencies {
       "testImplementation"("org.junit.jupiter:junit-jupiter:$junitVersion")
       "testRuntimeOnly"("org.junit.platform:junit-platform-launcher")

@@ -71,10 +71,10 @@ git clone https://github.com/thetinkeringtypist/template-gradle-project-for-java
 cd "$project"
 
 # Set the root-project name
-sed -i -e "s/${PROJECT_NAME}/<project-name>/g" settings.gradle.kts
+sed -i "s/${PROJECT_NAME}/<project-name>/g" settings.gradle.kts
 
 # Remove the commit history for the template project
-rm -rf .git
+rm -rf .git .githooks
 
 # Initialize the git repository for the new project
 git init
