@@ -1,15 +1,19 @@
 #!/bin/bash
 
-echo "Running pre-commit checks..."
+PLACEHOLDER="\${PROJECT_NAME}"
+FILE="settings.gradle.kts"
 
-# Prevent commits directly to the main line
-branch="$(git rev-parse --abbrev-ref HEAD)"
-if [ "$branch" = "main" ]; then
-  echo "Direct commits to main are prohibited!"
-  exit 1
+# Check if the file exists
+if [ -f "$FILE" ]; then
+    # This regex looks for rootProject.name = "anything"
+    CURRENT_NAME=$(grep "rootProject.name =" "$FILE" | sed -E 's/.*"(.*)".*/\1/')
+
+    # If the current name isn't already the placeholder, swap it
+    if [ "$CURRENT_NAME" != "$PLACEHOLDER" ]; then
+        # Note: we escape the $ for the placeholder in the sed command
+        sed -i "s/rootProject.name = \".*\"/rootProject.name = \"$PLACEHOLDER\"/" "$FILE"
+        git add "$FILE"
+    fi
 fi
-
-# Set the project name to a template value
-sed -i -e "s/template-gradle-project-for-java/\${PROJECT_NAME}/g" settings.gradle.kts
 
 exit 0

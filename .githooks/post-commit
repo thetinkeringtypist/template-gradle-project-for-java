@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Put your preferred local name back
+LOCAL_NAME="template-gradle-project-for-java"
+sed -i "s/rootProject.name = \".*\"/rootProject.name = \"$LOCAL_NAME\"/" settings.gradle.kts
