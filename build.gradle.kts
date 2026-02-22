@@ -1,5 +1,6 @@
 plugins {
   id("java-base")
+  id("template-gradle-project-for-java.create-module")
 }
 
 java {

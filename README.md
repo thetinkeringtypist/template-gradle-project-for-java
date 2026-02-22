@@ -7,27 +7,41 @@ This repository is for setting up my multi-module Java projects with Gradle.
 
 ### Some Notes About This Template
 
+---
+
 The root project of this template is _not_ intended to have source code.
 All source code should be in the sub-projects (ie. modules) in the `modules` directory.
+Modules gain the following dependencies by default:
+- JUnit 5
+- Java Microbenchmark Harness (JMH)
 
-Compiled and generated output of all modules ends up in the same top-level directory `out`.
-I like all of my compiled and generated output to be in the same directory. Plus, it makes it
-easier to leverage a ramdisk for fewer writes to disk during development.
+The entire modules directory is captured in `settings.gradle.kts`, so no modules need to
+be explicitly added to the `include` list.
 
-The folder structure for this template is as follows:
+Compiled output (and generated code) of all modules ends up in the same top-level `out` directory.
+I prefer all module output to be in the same directory for navigational ease. Plus, it makes it
+easier to symlink the folder to a ramdisk to save on disk wear.
+
+All custom Gradle plugins are defined in the `build-logic` directory. Since it's only for project and build management,
+it is separate from the rest of the source code modules. 
+
+### Folder Structure
+
+---
 
 ```text
 <root-project>
+  ├─ build-logic/  <-- Custom Gradle plugins here
   ├─ gradle
   │  └─ wrapper
   │     ├─ gradle-wrapper.jar
   │     └─ gradle-wrapper.properties
-  ├─ modules
+  ├─ modules  <-- Project modules here
   │  └─ example
   │     ├─ benchmarks
   │     │  ├─ java/
   │     │  └─ resources/
-  │     ├─ sr/
+  │     ├─ src/
   │     │  ├─ java/
   │     │  └─ resources/
   │     └─ test
@@ -41,11 +55,11 @@ The folder structure for this template is as follows:
   └─ settings.gradle.kts
 ```
 
-
-
 ### How to Use This Template
 
-First, clone the project:
+---
+
+Clone the project template and initialize a new git repository
 
 ```bash
 # Define your project name
@@ -64,6 +78,16 @@ rm -rf .git
 
 # Initialize the git repository for the new project
 git init
+```
+
+### Creating A New Module
+
+---
+
+To create a new module (and the relevant directories), run the following command.
+
+```bash
+./gradlew createModule "module-name"
 ```
 
 And you're ready to go!
