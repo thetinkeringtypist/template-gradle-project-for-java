@@ -1,6 +1,7 @@
 plugins {
   id("java-base")
-  id("template-gradle-project-for-java.create-module")
+  id("com.thetinkeringtypist.gradle.create-module")
+  id("idea")
 }
 
 java {
@@ -9,8 +10,17 @@ java {
   }
 }
 
+idea {
+  module {
+    isDownloadJavadoc = true
+    isDownloadSources = false
+  }
+}
+
 val jmhVersion = "1.37"
 val junitVersion = "5.11.0"
+
+layout.buildDirectory.set(layout.projectDirectory.dir("out"))
 
 subprojects {
   if (project.path.startsWith(":modules:")) {

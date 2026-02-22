@@ -87,7 +87,7 @@ git init
 To create a new module (and the relevant directories), run the following command.
 
 ```bash
-./gradlew createModule "module-name"
+./gradlew createModule -Pmodule="<module-name>"
 ```
 
 And you're ready to go!
