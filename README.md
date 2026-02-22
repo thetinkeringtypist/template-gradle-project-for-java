@@ -31,12 +31,13 @@ it is separate from the rest of the source code modules.
 
 ```text
 <root-project>
-  ├─ build-logic/  <-- Custom Gradle plugins here
+  ├─ .githooks/    <-- Git hooks
+  ├─ build-logic/  <-- Custom Gradle plugins
   ├─ gradle
   │  └─ wrapper
   │     ├─ gradle-wrapper.jar
   │     └─ gradle-wrapper.properties
-  ├─ modules  <-- Project modules here
+  ├─ modules       <-- Project modules
   │  └─ example
   │     ├─ benchmarks
   │     │  ├─ java/
@@ -47,7 +48,7 @@ it is separate from the rest of the source code modules.
   │     └─ test
   │        ├─ java/
   │        └─ resources/
-  ├─ out/  <-- Compiled and generated output of all modules here       
+  ├─ out/  <-- Compiled and generated output of all modules       
   ├─ build.gradle.kts
   ├─ gradlew      
   ├─ gradlew.bat
